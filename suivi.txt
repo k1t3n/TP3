@@ -1,0 +1,25 @@
+Tâches : 
+
+Vérification nom du client existant. (Michael)
+
+Vérification plat existant. (Michael)
+
+Vérification format entré client. (Michael)
+
+Vérification format entré plat. (Michael)
+
+Vérification format entré commande. (Michael)
+
+Vérification des chiffres erronés. (Michael)
+
+
+Sortie : 
+
+Facture sur le terminal ET modifier le fichier (Facture-du-(date-heure).txt) (Michael)
+
+afficher les commandes incorrectes AVANT facture. (Yanick)
+
+Facture non afficher dans fichier si = 0$. (Yanick)
+
+Ajouté les taxes aux factures. (Yanick)
+
