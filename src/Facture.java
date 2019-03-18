@@ -1,9 +1,7 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.text.DecimalFormat;
@@ -13,7 +11,8 @@ import java.util.Date;
 public class Facture {
 
 
-	
+	static ArrayList<String> erreurs = new ArrayList<String>();
+
 
 
 
@@ -74,7 +73,7 @@ public class Facture {
 			if (info.get(i).chars().allMatch(Character::isLetter)) {
 				Client.listeClients.add(new Client(info.get(i)));
 			} else {
-				System.out.println("Erreur de client : " + info.get(i));
+				erreurs.add("Erreur de client : " + info.get(i) + "\nExplication : Le nom doit être des caractères.");
 			}
 		}
 		
@@ -87,13 +86,13 @@ public class Facture {
 		for (int i = debut + 1; i < fin; i++) {
 			String[] parts = info.get(i).split(" ");
 			if (!parts[0].matches("^[a-zA-Z0-9_]*$")) {
-				System.out.println("Erreur dans le nom du plat : " + parts[0]);
+				erreurs.add("Erreur dans le nom du plat : " + parts[0] + "\nExplication : Le nom du plat doit être des caractères.");
 				continue;
 			}
 			try {
 				Plat.plats.add(new Plat(parts[0], Double.parseDouble(parts[1])));
 			} catch (Exception e) {
-				System.out.println("Erreur de prix dans le plat : " + parts[0]);
+				erreurs.add( "Erreur de prix dans le plat : " + parts[0] + "\nExplication : Le prix du plat doit être des chiffres.");
 				continue;
 			}
 		}
@@ -118,7 +117,8 @@ public class Facture {
 			try {
 				quantite = Integer.parseInt(parts[2]);
 			} catch (Exception e) {
-				System.out.println("Erreur dans la quantité de la commande : " + parts[0] + " " + parts[1] + " " + parts[2]);
+				erreurs.add( "Erreur dans la quantité de la commande : " + parts[0] + " " + parts[1] + " " + parts[2] 
+						+ "\nExplication : Format attendu : Nom + Plat + Quantité");			 
 				continue;
 			}
 			Commande cmd = new Commande(client, plat, quantite);
@@ -133,16 +133,25 @@ public class Facture {
 	}
 	
 	public static void printFactures() {
+		printErreur();
 		System.out.println("Bienvenue chez Barette!");
 		System.out.println("Factures:");
 		DecimalFormat df =  new DecimalFormat("###,##0.00$"); 
 		for (Client c : Client.listeClients) {
+			if (c.getPrix() != 0)
 			System.out.println(c.nom + " " + df.format(c.getPrix()) );
 		}
 	}
-	
+	public static void printErreur() {
+		
+		if ( !erreurs.isEmpty() ) {
+			System.out.println( "Erreur survenu : " );
 
+			for ( String string : erreurs ) {
+				System.out.println( string  + "\n");
+			}
 
-
-
+			System.out.println();
+	}
+	}
 }
