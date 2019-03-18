@@ -1,21 +1,18 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Facture {
 
 
 	
-
-
 
 	public static void main(String[] args) {
 		try {
@@ -45,6 +42,10 @@ public class Facture {
 			attribuerCommandes(data);
 			printFactures();
 			sauvegarderFactures();
+			createClients(data);
+			createPlats(data);
+			attribuerCommandes(data);
+			printFactures();
 			} catch (Exception e) {
 				System.out.println("Le fichier ne respecte pas le format demandé !");
 				e.printStackTrace();
@@ -59,7 +60,8 @@ public class Facture {
 	public static void sauvegarderFactures() {
 		PrintStream out;
 		try {
-			out = new PrintStream(new FileOutputStream("Facture-du-" + new Date().toString() + "-" + new Date().getTime() + ".txt"));
+			Calendar c = Calendar.getInstance();
+			out = new PrintStream(new FileOutputStream("Facture-du-" + c.get(Calendar.YEAR) + "Y" + c.get(Calendar.MONTH) + "M" + c.get(Calendar.DAY_OF_MONTH) + "-" + c.get(Calendar.HOUR) + "H" + c.get(Calendar.MINUTE) + ".txt"));
 			System.setOut(out);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
