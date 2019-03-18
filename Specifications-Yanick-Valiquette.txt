@@ -1,0 +1,12 @@
+Spécifications 
+
+Afficher les commandes incorrectes avant factures :
+Création d'un Araylist "erreurs" pour stocker les messages d'erreur.
+Création d'une méthode supplémentaire permettant d'afficher les messages contenu dans un Arraylist. (Classe : Facture.java)
+
+
+Facture non afficher dans fichier si = 0$ :
+Ajout d'une vérification si le prix du client était de 0 avant l'affichage des clients. (Classe : Facture.java)
+
+Ajouté les taxes aux factures : 
+Ajout de la TPS et de la TVQ dans le total avant de le multiplier par la quantité demander (Classe : Client.java).
