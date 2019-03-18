@@ -9,7 +9,6 @@ import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Facture {
 
@@ -28,7 +27,7 @@ public class Facture {
 	
 	public static void readFile() throws IOException {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader( System.getProperty("user.dir") + "\\bin\\commandes.txt"));
+			BufferedReader br = new BufferedReader(new FileReader( System.getProperty("user.dir") + "\\bin\\main\\commandes.txt"));
 			
 			ArrayList<String> data = new ArrayList<String>();
 			String currentLine;
@@ -113,10 +112,12 @@ public class Facture {
 			String[] parts = info.get(i).split(" ");
 			Client client = Client.getAvecNom(parts[0]);
 			if (client == null) {
+				erreurs.add("Erreur nom du client inexistant.");
 				continue;
 			}
 			Plat plat = Plat.getAvecNom(parts[1]);
 			if (plat == null) {
+				erreurs.add("Erreur nom du plat inexistant.");
 				continue;
 			}
 			int quantite;
