@@ -2,13 +2,11 @@ package test;
 
 import static org.junit.Assert.*;
 
-<<<<<<< HEAD
 import java.io.IOException;
-=======
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
->>>>>>> cfc7da7574a84c926101e979107599b4ebe5446c
+import java.util.Arrays;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -72,13 +70,12 @@ public class TestTP3 {
 		
 	}
 	
-	/*
-	 * Tests Michael
-	 */
-	
 	@Test
-	public void commandesIncorrectes() throws IOException {
-		
+	public void testErreursClients() {
+		String[] data = {"Clients :", " ", "12385" ,"Plats :"};
+		Facture.createClients(new ArrayList<String>(Arrays.asList(data)));
+		Assert.assertNotNull(Facture.erreurs.get(0), Facture.erreurs);
 	}
+	
 
 }
