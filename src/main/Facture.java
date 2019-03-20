@@ -13,7 +13,7 @@ import java.util.Calendar;
 public class Facture {
 
 
-	static ArrayList<String> erreurs = new ArrayList<String>();
+	public static ArrayList<String> erreurs = new ArrayList<String>();
 
 
 	public static void main(String[] args) {

@@ -2,14 +2,10 @@ package test;
 
 import static org.junit.Assert.*;
 
-<<<<<<< HEAD
 import java.io.IOException;
-=======
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
->>>>>>> cfc7da7574a84c926101e979107599b4ebe5446c
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -40,11 +36,32 @@ public class TestTP3 {
 	public void tearDown() throws Exception {
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
-	public void testPlatExiste() {
+	public void testCreatePlatErreur() {
 
-		Plat plat = new Plat( "Poutine", 1.50 );
+		ArrayList<String> info = new ArrayList<String>();
+		info.add("Plats :");
+		info.add("Poutine 10.5");
+		info.add( "22" );
+		info.add( "Commandes :" );
+
+		Facture.createPlats( info );
+		Assert.assertFalse( Facture.erreurs.isEmpty() );
+	}
 	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testCreatePlatErreurNom() {
+
+		ArrayList<String> info = new ArrayList<String>();
+		info.add("Plats :");
+		info.add("Poutine 10,5");
+		info.add( "P@utine 10,5" );
+		info.add( "Commandes :" );
+
+		Facture.createPlats( info );
+		Assert.assertFalse( Facture.erreurs.isEmpty() );
 	}
 	
 	@Test
