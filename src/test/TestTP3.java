@@ -1,6 +1,9 @@
 package test;
 
 import static org.junit.Assert.*;
+
+import java.io.IOException;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -49,6 +52,15 @@ public class TestTP3 {
 	
 	@Test
 	public void testSortiFacture() {
+		
+	}
+	
+	/*
+	 * Tests Michael
+	 */
+	
+	@Test
+	public void commandesIncorrectes() throws IOException {
 		
 	}
 
