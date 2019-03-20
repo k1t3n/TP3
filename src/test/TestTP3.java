@@ -37,12 +37,33 @@ public class TestTP3 {
 	@After
 	public void tearDown() throws Exception {
 	}
-
-	@Test
-	public void testPlatExiste() {
-
-		Plat plat = new Plat( "Poutine", 1.50 );
 	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testCreatePlatErreur() {
+
+		ArrayList<String> info = new ArrayList<String>();
+		info.add("Plats :");
+		info.add("Poutine 10.5");
+		info.add( "22" );
+		info.add( "Commandes :" );
+
+		Facture.createPlats( info );
+		Assert.assertFalse( Facture.erreurs.isEmpty() );
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testCreatePlatErreurNom() {
+
+		ArrayList<String> info = new ArrayList<String>();
+		info.add("Plats :");
+		info.add("Poutine 10,5");
+		info.add( "P@utine 10,5" );
+		info.add( "Commandes :" );
+
+		Facture.createPlats( info );
+		Assert.assertFalse( Facture.erreurs.isEmpty() );
 	}
 	
 	@Test
