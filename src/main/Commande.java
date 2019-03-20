@@ -1,8 +1,6 @@
 package main;
 
-
 public class Commande {
-	
 	
 	
 	Client client;
