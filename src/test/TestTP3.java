@@ -2,13 +2,21 @@ package test;
 
 import static org.junit.Assert.*;
 
+<<<<<<< HEAD
 import java.io.IOException;
+=======
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+>>>>>>> cfc7da7574a84c926101e979107599b4ebe5446c
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import junit.framework.Assert;
 import main.Client;
 import main.Commande;
 import main.Facture;
@@ -34,14 +42,23 @@ public class TestTP3 {
 
 	@Test
 	public void testPlatExiste() {
-		fail( "Not yet implemented" );
+
+		Plat plat = new Plat( "Poutine", 1.50 );
+	
 	}
 	
 	@Test
 	public void testNomPresent() {
 		
-		Client clientTemp = new Client("Jean");
+	}
+	
+	@Test
+	public void testFormatNom() {
 		
+	}
+	
+	@Test
+	public void testFormatPlat() {
 		
 	}
 	
