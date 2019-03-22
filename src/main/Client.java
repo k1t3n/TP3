@@ -44,7 +44,7 @@ public class Client {
 	public double getPrix() {
 		double prix = 0;
 		double TPS = 0.05;
-		double TVQ = 0.01;
+		double TVQ = 0.1;
 		double aAjouter;
 		for (Commande cmd : commandes) {
 			aAjouter = cmd.plat.prix * TPS;
