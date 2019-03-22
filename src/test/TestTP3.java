@@ -121,6 +121,103 @@ public class TestTP3 {
 		
 	}
 	
+	@Test
+	@SuppressWarnings("deprecation")
+	public void testAttribuerQuantiteInexistant() {
+		Client.listeClients.clear();
 
+		ArrayList<String> info = new ArrayList<String>();
+		info.add( "Clients : ");
+		info.add( "Roger" );
+		info.add("Plats :");
+		info.add( "Poutine 10.5" );
+		info.add( "Commandes :" );
+		info.add( "Roger Poutine s" );
+		info.add( "Fin" );
+		
+		Facture.createClients( info );
+		Facture.createPlats( info );
+		Facture.attribuerCommandes( info );
+		Assert.assertFalse( Facture.erreurs.isEmpty() );
+		
+	}
+	
+	@Test
+	@SuppressWarnings("deprecation")
+	public void testAttribuerValide() {
+		Client.listeClients.clear();
+
+		ArrayList<String> info = new ArrayList<String>();
+		info.add( "Clients : ");
+		info.add( "Roger" );
+		info.add("Plats :");
+		info.add( "Poutine 10.5" );
+		info.add( "Commandes :" );
+		info.add( "Roger Poutine 2" ); 
+		info.add( "Fin" );
+		
+		Facture.createClients( info );
+		Facture.createPlats( info );
+		Facture.attribuerCommandes( info );
+		Assert.assertFalse( !Facture.erreurs.isEmpty() ); 
+		
+	}
+	
+	@Test
+	@SuppressWarnings("deprecation")
+	public void testFacture() {
+		Client.listeClients.clear();
+
+		ArrayList<String> info = new ArrayList<String>();
+		info.add( "Clients : ");
+		info.add( "Roger" );
+		info.add("Plats :");
+		info.add( "Poutine 10.5" );
+		info.add( "Commandes :" );
+		info.add( "Roger Poutine 2" );
+		info.add( "Fin" );
+		
+		Facture.createClients( info );
+		Facture.createPlats( info );
+		Facture.attribuerCommandes( info );
+		Assert.assertTrue( Facture.printFactures() );
+		
+	}
+	
+	@Test
+	@SuppressWarnings("deprecation")
+	public void testAffichageClientFonctionne() {
+		Client.listeClients.clear();
+
+		ArrayList<String> info = new ArrayList<String>();
+		info.add( "Clients : ");
+		info.add( "Roger" );
+		info.add( "Serge" );
+		info.add("Plats :");
+		
+		Facture.createClients( info );
+		Assert.assertTrue( Facture.printClient() );
+		
+	}
+	
+	@Test
+	@SuppressWarnings("deprecation")
+	public void testPrixTaxe() {
+		
+		//Client.listeClients.add( new Client("Paul") );
+		ArrayList<Commande> commandes = new ArrayList<Commande>();
+		commandes.clear();
+		commandes.add( new Commande(new Client("Paul"), new Plat("Poutine", 12.50), 1 ));
+		Assert.assertEquals( 14.37, Client.listeClients.get( 0 ).getPrix());
+		
+	}
+	
+	@Test
+	@SuppressWarnings("deprecation")
+	public void testLectureFichier() throws IOException {
+		
+		Assert.assertFalse( Facture.readFile() );
+		
+	}
 
 }
