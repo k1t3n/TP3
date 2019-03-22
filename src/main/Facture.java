@@ -25,7 +25,8 @@ public class Facture {
 		
 	}
 	
-	public static void readFile() throws IOException {
+	public static boolean readFile() throws IOException {
+		boolean erreur = false;
 		try {
 			BufferedReader br = new BufferedReader(new FileReader( System.getProperty("user.dir") + "\\bin\\main\\commandes.txt"));
 			
@@ -48,15 +49,18 @@ public class Facture {
 			createPlats(data);
 			attribuerCommandes(data);
 			printFactures();
+			erreur = false;
 			} catch (Exception e) {
 				System.out.println("Le fichier ne respecte pas le format demandé !");
 				e.printStackTrace();
+				erreur = true;
 			}
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			erreur = true;
 		}
-		
+		return erreur; 
 	}
 	
 	public static void sauvegarderFactures() {
@@ -133,21 +137,36 @@ public class Facture {
 		}
 	}
 	
-	public static void printClient() {
-		Client.listeClients.forEach(client -> {
-			System.out.println(client.toString());
-		});
+	public static boolean printClient() {
+		boolean fonctionne = false;
+		if ( Client.listeClients.isEmpty() ) {
+			fonctionne = false;
+		} else {
+			for ( Client client : Client.listeClients ) {
+				System.out.println( client.toString() );
+			}
+			fonctionne = true;
+
+		}
+		return fonctionne;
+
 	}
 	
-	public static void printFactures() {
+	public static boolean printFactures() {
+		boolean fonctionne = false;
 		printErreur();
 		System.out.println("Bienvenue chez Barette!");
 		System.out.println("Factures:");
 		DecimalFormat df =  new DecimalFormat("###,##0.00$"); 
 		for (Client c : Client.listeClients) {
-			if (c.getPrix() != 0)
-			System.out.println(c.nom + " " + df.format(c.getPrix()) );
+			if (c.getPrix() != 0) {
+				System.out.println(c.nom + " " + df.format(c.getPrix()) );
+				fonctionne=true;
+			}
+			
 		}
+		
+		return fonctionne;
 	}
 	public static void printErreur() {
 		

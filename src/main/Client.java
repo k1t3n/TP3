@@ -10,7 +10,6 @@ public class Client {
 	String nom;
 	ArrayList<Commande> commandes = new ArrayList<Commande>();
 	
-	
 	public Client() {
 		
 	}
@@ -45,12 +44,14 @@ public class Client {
 	public double getPrix() {
 		double prix = 0;
 		double TPS = 0.05;
-		double TVQ = 0.1;
+		double TVQ = 0.01;
 		double aAjouter;
 		for (Commande cmd : commandes) {
 			aAjouter = cmd.plat.prix * TPS;
 			aAjouter += cmd.plat.prix * TVQ;
 			prix += ( cmd.plat.prix  + aAjouter )* cmd.quantite;
+
+			System.out.println( prix );
 		}
 		return prix;
 	}
